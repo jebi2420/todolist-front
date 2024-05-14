@@ -1,7 +1,7 @@
 import React from "react";
 import TodoItem from "./TodoItem"
 
-const TodoBoard = ({todoList, toggleComplete}) => {
+const TodoBoard = ({todoList, toggleComplete, deleteTask}) => {
   return (
     <div>
       <h2>Todo List</h2>
@@ -11,6 +11,7 @@ const TodoBoard = ({todoList, toggleComplete}) => {
               item={item} 
               key={index}
               toggleComplete={toggleComplete}
+              deleteTask={deleteTask}
             />
         ))
       : <h2>There is no Item to show</h2>}

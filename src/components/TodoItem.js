@@ -1,6 +1,6 @@
 import { Col, Row } from "react-bootstrap";
 
-const TodoItem = ({item, key, toggleComplete}) => {
+const TodoItem = ({item, key, toggleComplete, deleteTask}) => {
   return (
     <Row>
       <Col xs={12}>
@@ -8,7 +8,7 @@ const TodoItem = ({item, key, toggleComplete}) => {
           <div className="todo-content">{item.task}</div>
 
           <div>
-            <button className="button-delete">삭제</button>
+            <button className="button-delete" onClick={()=>deleteTask(item._id)}>삭제</button>
             <button className="button-delete" onClick={()=>toggleComplete(item._id)}
             >
               {item.isComplete ? `끝남` : `안끝남`}

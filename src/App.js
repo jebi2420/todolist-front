@@ -53,6 +53,18 @@ function App() {
     }
   }
 
+  const deleteTask = async (id) => {
+    try{
+      const task = todoList.find((item) => item._id === id);
+      const response = await api.delete(`/tasks/${id}`)
+      if (response.status === 200){
+        getTasks();
+      }
+    }catch(err){
+      console.log("error", err)
+    }
+  }
+
   useEffect(()=>{
     getTasks();
   },[])
@@ -77,6 +89,7 @@ function App() {
       <TodoBoard 
         todoList={todoList} 
         toggleComplete={toggleComplete}
+        deleteTask={deleteTask}
       />
     </Container>
   );
