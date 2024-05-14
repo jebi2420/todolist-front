@@ -39,6 +39,20 @@ function App() {
     }
   }
 
+  const toggleComplete = async (id) => {
+    try{
+      const task = todoList.find((item) => item._id === id);
+      const response = await api.put(`/tasks/${id}`, {
+        isComplete: !task.isComplete,
+      });
+      if (response.status === 200){
+        getTasks();
+      }
+    }catch(err){
+      console.log("error", err);
+    }
+  }
+
   useEffect(()=>{
     getTasks();
   },[])
@@ -60,7 +74,10 @@ function App() {
         </Col>
       </Row>
 
-      <TodoBoard todoList={todoList} />
+      <TodoBoard 
+        todoList={todoList} 
+        toggleComplete={toggleComplete}
+      />
     </Container>
   );
 }
